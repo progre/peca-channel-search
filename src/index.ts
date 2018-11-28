@@ -11,19 +11,18 @@ const YP_LIST = [
 async function main() {
   const channelName = process.argv[2];
   const now = new Date();
-  const nullableIdList = await Promise.all(YP_LIST.map(async (x) => {
+  const nullableChannelList = await Promise.all(YP_LIST.map(async (x) => {
     const ypTxt = await (await fetch(x)).text();
     return (
       parser.parse(ypTxt, now)
-        .filter(y => y.name === channelName)
-        .map(y => y.id)[0]
+        .filter(y => y.name === channelName)[0]
     );
   }));
-  const id = nullableIdList.filter(x => x != null)[0];
-  if (id == null) {
+  const channel = nullableChannelList.filter(x => x != null)[0];
+  if (channel == null) {
     return -1;
   }
-  process.stdout.write(id);
+  process.stdout.write(`http://localhost:7144/stream/${channel.id}?tip=${channel.ip}`);
   return 0;
 }
 
