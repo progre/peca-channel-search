@@ -1,14 +1,16 @@
 {
-  "name": "typescript-boilerplate",
-  "description": "Boilerplate for TypeScript project.",
-  "version": "1.0.0",
+  "name": "peca-channel-search",
+  "description": "Find PeerCast channel id from YellowPages.",
+  "version": "0.1.0",
   "bin": {
-    "typescript-boilerplate": "./bin/typescript-boilerplate"
+    "peca-channel-search": "./bin/peca-channel-search"
   },
   "bugs": {
-    "url": "https://github.com/progre/typescript-boilerplate/issues"
+    "url": "https://github.com/progre/peca-channel-search/issues"
   },
   "dependencies": {
+    "node-fetch": "^2.3.0",
+    "peercast-yp-channels-parser": "0.0.5",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.6"
   },
@@ -17,22 +19,23 @@
     "@commitlint/config-conventional": "^7.1.2",
     "@progre/tslint-config": "~5.11.0",
     "@types/node": "^10.12.9",
+    "@types/node-fetch": "^2.1.4",
     "husky": "^1.1.4",
     "tslint": "^5.11.0",
-    "typescript-tslint-plugin": "^0.0.7"
+    "typescript-tslint-plugin": "^0.1.1"
   },
   "files": [
     "bin",
     "src",
     "tsconfig.json"
   ],
-  "homepage": "https://github.com/progre/typescript-boilerplate#readme",
-  "license": "CC0-1.0",
+  "homepage": "https://github.com/progre/peca-channel-search#readme",
+  "license": "MIT",
   "main": "entry.js",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/progre/typescript-boilerplate.git"
+    "url": "git+https://github.com/progre/peca-channel-search.git"
   },
   "scripts": {
     "commitmsg": "commitlint -e $HUSKY_GIT_PARAMS",
