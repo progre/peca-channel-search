@@ -1,6 +1,6 @@
 {
   "name": "peca-channel-search",
-  "description": "Find PeerCast channel id from YellowPages.",
+  "description": "Find PeerCast channel from YellowPages.",
   "version": "0.1.0",
   "bin": {
     "peca-channel-search": "./bin/peca-channel-search"
