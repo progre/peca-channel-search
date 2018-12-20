@@ -18,11 +18,15 @@ async function main() {
         .filter(y => y.name === channelName)[0]
     );
   }));
-  const channel = nullableChannelList.filter(x => x != null)[0];
-  if (channel == null) {
+  const channels = nullableChannelList.filter(x => x != null);
+  if (channels.length <= 0) {
     return -1;
   }
-  process.stdout.write(`http://localhost:7144/stream/${channel.id}?tip=${channel.ip}`);
+  process.stdout.write(
+    channels
+      .map(x => `http://localhost:7144/stream/${channel.id}?tip=${channel.ip}`)
+      .join('\n'),
+  );
   return 0;
 }
 

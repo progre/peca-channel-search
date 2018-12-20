@@ -1,7 +1,7 @@
 {
   "name": "peca-channel-search",
   "description": "Find PeerCast channel from YellowPages.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "bin": {
     "peca-channel-search": "./bin/peca-channel-search"
   },
