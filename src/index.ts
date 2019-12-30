@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import parser from 'peercast-yp-channels-parser';
+import parser, { Channel } from 'peercast-yp-channels-parser';
 
 const YP_LIST = [
   'http://temp.orz.hm/yp/index.txt',
@@ -9,22 +9,23 @@ const YP_LIST = [
 ];
 
 async function main() {
-  const channelName = process.argv[2];
+  const port = process.argv[2];
+  const keyword = process.argv[3];
   const now = new Date();
-  const nullableChannelList = await Promise.all(YP_LIST.map(async (x) => {
+  const channelListList = await Promise.all<Channel[]>(YP_LIST.map(async (x) => {
     const ypTxt = await (await fetch(x)).text();
-    return (
-      parser.parse(ypTxt, now)
-        .filter(y => y.name === channelName)[0]
-    );
+    return parser.parse(ypTxt, now);
   }));
-  const channels = nullableChannelList.filter(x => x != null);
+  const channelList = channelListList.reduce((p, c) => p.concat(c), []);
+  const channels = channelList.filter(x => (
+    [x.name, x.genre, x.desc, x.comment].some(y => y.includes(keyword))
+  ));
   if (channels.length <= 0) {
     return -1;
   }
   process.stdout.write(
     channels
-      .map(x => `http://localhost:7144/stream/${channel.id}?tip=${channel.ip}`)
+      .map(x => `http://localhost:${port}/stream/${x.id}?tip=${x.ip}`)
       .join('\n'),
   );
   return 0;
