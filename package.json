@@ -9,7 +9,7 @@
     "url": "https://github.com/progre/peca-channel-search/issues"
   },
   "dependencies": {
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.7",
     "peercast-yp-channels-parser": "0.0.5",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.6"
